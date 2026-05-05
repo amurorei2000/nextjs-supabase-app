@@ -1,0 +1,29 @@
+- generic [active] [ref=e1]:
+    - generic [ref=e5]:
+        - generic [ref=e6]:
+            - generic [ref=e7]: Sign up
+            - generic [ref=e8]: Create a new account
+        - generic [ref=e10]:
+            - generic [ref=e11]:
+                - generic [ref=e12]:
+                    - generic [ref=e13]: Email
+                    - textbox "Email" [ref=e14]:
+                        - /placeholder: m@example.com
+                - generic [ref=e15]:
+                    - generic [ref=e17]: Password
+                    - textbox "Password" [ref=e18]
+                - generic [ref=e19]:
+                    - generic [ref=e21]: Repeat Password
+                    - textbox "Repeat Password" [ref=e22]
+                - button "Sign up" [ref=e23] [cursor=pointer]
+                - generic [ref=e24]: or
+                - button "Google로 로그인" [ref=e25] [cursor=pointer]:
+                    - img
+                    - text: Google로 로그인
+            - generic [ref=e26]:
+                - text: Already have an account?
+                - link "Login" [ref=e27] [cursor=pointer]:
+                    - /url: /auth/login
+    - button "Open Next.js Dev Tools" [ref=e33] [cursor=pointer]:
+        - img [ref=e34]
+    - alert [ref=e37]
