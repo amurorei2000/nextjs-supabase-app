@@ -1,11 +1,13 @@
 import { redirect } from "next/navigation";
 
+import { connection } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { InfoIcon } from "lucide-react";
 import { FetchDataSteps } from "@/components/tutorial/fetch-data-steps";
 import { Suspense } from "react";
 
 async function UserDetails() {
+  await connection();
   const supabase = await createClient();
   const { data, error } = await supabase.auth.getClaims();
 
@@ -20,7 +22,7 @@ export default function ProtectedPage() {
   return (
     <div className="flex w-full flex-1 flex-col gap-12">
       <div className="w-full">
-        <div className="flex items-center gap-3 rounded-md bg-accent p-3 px-5 text-sm text-foreground">
+        <div className="bg-accent text-foreground flex items-center gap-3 rounded-md p-3 px-5 text-sm">
           <InfoIcon size="16" strokeWidth={2} />
           This is a protected page that you can only see as an authenticated user
         </div>

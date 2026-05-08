@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+import { connection } from "next/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
@@ -5,7 +7,8 @@ import { getEventsByOrganizer } from "@/lib/supabase/events";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
-export default async function EventsPage() {
+async function EventsContent() {
+  await connection();
   const supabase = await createClient();
   const { data, error } = await supabase.auth.getClaims();
   if (error || !data?.claims) redirect("/auth/login");
@@ -17,7 +20,7 @@ export default async function EventsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">내 이벤트</h1>
-          <p className="mt-1 text-muted-foreground">주최한 이벤트를 관리합니다.</p>
+          <p className="text-muted-foreground mt-1">주최한 이벤트를 관리합니다.</p>
         </div>
         <Button asChild>
           <Link href="/protected/events/new">이벤트 만들기</Link>
@@ -45,7 +48,7 @@ export default async function EventsPage() {
               <Link
                 key={event.id}
                 href={`/protected/events/${event.id}`}
-                className="flex flex-col gap-2 rounded-lg border bg-card p-4 transition-colors hover:bg-accent"
+                className="bg-card hover:bg-accent flex flex-col gap-2 rounded-lg border p-4 transition-colors"
               >
                 <div className="flex items-center justify-between gap-2">
                   <span className="truncate font-semibold">{event.title}</span>
@@ -53,7 +56,7 @@ export default async function EventsPage() {
                     {event.status === "open" ? "모집중" : "마감"}
                   </Badge>
                 </div>
-                <div className="flex gap-4 text-sm text-muted-foreground">
+                <div className="text-muted-foreground flex gap-4 text-sm">
                   <span>{eventDate}</span>
                   <span>{event.location}</span>
                 </div>
@@ -63,5 +66,13 @@ export default async function EventsPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function EventsPage() {
+  return (
+    <Suspense fallback={<div className="text-muted-foreground text-sm">불러오는 중...</div>}>
+      <EventsContent />
+    </Suspense>
   );
 }

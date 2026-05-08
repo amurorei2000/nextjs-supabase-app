@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+import { connection } from "next/server";
 import { notFound, redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getEventById, getEventParticipants } from "@/lib/supabase/events";
@@ -19,7 +21,8 @@ interface Props {
   params: Promise<{ id: string }>;
 }
 
-export default async function EventManagePage({ params }: Props) {
+async function EventManageContent({ params }: { params: Promise<{ id: string }> }) {
+  await connection();
   const { id } = await params;
 
   const supabase = await createClient();
@@ -64,7 +67,7 @@ export default async function EventManagePage({ params }: Props) {
         )}
       </div>
 
-      <div className="space-y-2 rounded-lg border bg-card p-4 text-sm">
+      <div className="bg-card space-y-2 rounded-lg border p-4 text-sm">
         <div className="flex justify-between">
           <span className="text-muted-foreground">일시</span>
           <span>{eventDate}</span>
@@ -83,8 +86,8 @@ export default async function EventManagePage({ params }: Props) {
 
       <div className="space-y-2">
         <p className="text-sm font-medium">공개 참여 링크</p>
-        <div className="flex items-center gap-2 rounded-lg border bg-muted px-3 py-2">
-          <span className="flex-1 truncate text-sm text-muted-foreground">{publicUrl}</span>
+        <div className="bg-muted flex items-center gap-2 rounded-lg border px-3 py-2">
+          <span className="text-muted-foreground flex-1 truncate text-sm">{publicUrl}</span>
           <CopyButton text={publicUrl} />
         </div>
       </div>
@@ -94,13 +97,13 @@ export default async function EventManagePage({ params }: Props) {
       <div className="space-y-4">
         <h2 className="text-lg font-semibold">
           참여자 목록{" "}
-          <span className="text-base font-normal text-muted-foreground">
+          <span className="text-muted-foreground text-base font-normal">
             ({participants.length}명)
           </span>
         </h2>
 
         {participants.length === 0 ? (
-          <p className="text-sm text-muted-foreground">아직 신청자가 없습니다.</p>
+          <p className="text-muted-foreground text-sm">아직 신청자가 없습니다.</p>
         ) : (
           <div className="overflow-hidden rounded-lg border">
             <Table>
@@ -120,7 +123,7 @@ export default async function EventManagePage({ params }: Props) {
                     <TableCell className="font-medium">{p.name}</TableCell>
                     <TableCell>{p.phone}</TableCell>
                     <TableCell className="text-muted-foreground">{p.memo ?? "-"}</TableCell>
-                    <TableCell className="text-sm text-muted-foreground">
+                    <TableCell className="text-muted-foreground text-sm">
                       {p.created_at
                         ? new Date(p.created_at).toLocaleString("ko-KR", {
                             month: "short",
@@ -171,5 +174,13 @@ export default async function EventManagePage({ params }: Props) {
         )}
       </div>
     </div>
+  );
+}
+
+export default function EventManagePage({ params }: Props) {
+  return (
+    <Suspense fallback={<div className="text-muted-foreground text-sm">불러오는 중...</div>}>
+      <EventManageContent params={params} />
+    </Suspense>
   );
 }

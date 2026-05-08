@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+import { connection } from "next/server";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createEvent } from "@/app/protected/events/[id]/actions";
@@ -10,7 +12,8 @@ interface Props {
   searchParams: Promise<{ error?: string }>;
 }
 
-export default async function NewEventPage({ searchParams }: Props) {
+async function NewEventContent({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
+  await connection();
   const supabase = await createClient();
   const { data, error } = await supabase.auth.getClaims();
   if (error || !data?.claims) redirect("/auth/login");
@@ -21,7 +24,7 @@ export default async function NewEventPage({ searchParams }: Props) {
     <div className="flex w-full flex-col gap-6">
       <div>
         <h1 className="text-3xl font-bold">이벤트 만들기</h1>
-        <p className="mt-1 text-muted-foreground">새 모임 이벤트를 생성합니다.</p>
+        <p className="text-muted-foreground mt-1">새 모임 이벤트를 생성합니다.</p>
       </div>
       {formError && (
         <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
@@ -71,5 +74,13 @@ export default async function NewEventPage({ searchParams }: Props) {
         </Button>
       </form>
     </div>
+  );
+}
+
+export default function NewEventPage({ searchParams }: Props) {
+  return (
+    <Suspense fallback={<div className="text-muted-foreground text-sm">불러오는 중...</div>}>
+      <NewEventContent searchParams={searchParams} />
+    </Suspense>
   );
 }
