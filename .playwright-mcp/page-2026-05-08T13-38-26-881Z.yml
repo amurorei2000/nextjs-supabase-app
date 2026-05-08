@@ -1,0 +1,36 @@
+- generic [active] [ref=e1]:
+    - main [ref=e2]:
+        - generic [ref=e3]:
+            - navigation [ref=e4]:
+                - generic [ref=e5]: 모임
+                - generic [ref=e6]:
+                    - button [ref=e7] [cursor=pointer]:
+                        - img
+                    - generic [ref=e8]:
+                        - link "Sign in" [ref=e9] [cursor=pointer]:
+                            - /url: /auth/login
+                        - link "Sign up" [ref=e10] [cursor=pointer]:
+                            - /url: /auth/sign-up
+            - generic [ref=e11]:
+                - generic [ref=e12]:
+                    - heading "모임 이벤트" [level=1] [ref=e13]
+                    - paragraph [ref=e14]: 링크 하나로 참여 신청·카풀·정산까지 한 번에.
+                    - link "+ 이벤트 만들기" [ref=e15] [cursor=pointer]:
+                        - /url: /protected/events/new
+                - generic [ref=e16]:
+                    - heading "모집중인 이벤트" [level=2] [ref=e17]
+                    - link "[테스트] 6월 수영 모임 모집중 5월 15일 PM 10:17 · 서울 강남 수영장 · 최대 5명" [ref=e19] [cursor=pointer]:
+                        - /url: /events/test-token-open-001
+                        - generic [ref=e20]:
+                            - generic [ref=e21]: "[테스트] 6월 수영 모임"
+                            - generic [ref=e22]: 모집중
+                        - generic [ref=e23]:
+                            - generic [ref=e24]: 5월 15일 PM 10:17
+                            - generic [ref=e25]: ·
+                            - generic [ref=e26]: 서울 강남 수영장
+                            - generic [ref=e27]: ·
+                            - generic [ref=e28]: 최대 5명
+            - generic [ref=e29]: 모임 이벤트 관리
+    - button "Open Next.js Dev Tools" [ref=e35] [cursor=pointer]:
+        - img [ref=e36]
+    - alert [ref=e39]

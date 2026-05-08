@@ -1,0 +1,45 @@
+- generic [active] [ref=e1]:
+    - generic [ref=e3]:
+        - generic [ref=e4]:
+            - generic [ref=e5]:
+                - heading "[테스트] 6월 수영 모임" [level=1] [ref=e6]
+                - generic [ref=e7]: 모집중
+            - paragraph [ref=e8]: 매주 수요일 정기 수영 모임입니다.
+        - generic [ref=e9]:
+            - generic [ref=e10]:
+                - generic [ref=e11]: 일시
+                - generic [ref=e12]: 2026년 5월 15일 PM 10:17
+            - generic [ref=e13]:
+                - generic [ref=e14]: 장소
+                - generic [ref=e15]: 서울 강남 수영장
+            - generic [ref=e16]:
+                - generic [ref=e17]: 참여 인원
+                - generic [ref=e18]: 1 / 5명
+        - generic [ref=e19]:
+            - heading "참여 신청" [level=2] [ref=e20]
+            - generic [ref=e21]:
+                - generic [ref=e22]:
+                    - text: 이름 *
+                    - textbox "이름 *" [ref=e23]:
+                        - /placeholder: 홍길동
+                - generic [ref=e24]:
+                    - text: 전화번호 *
+                    - textbox "전화번호 *" [ref=e25]:
+                        - /placeholder: 010-0000-0000
+                - generic [ref=e26]:
+                    - text: 메모
+                    - textbox "메모" [ref=e27]:
+                        - /placeholder: 전달 사항이 있으면 입력해주세요
+                - button "참여 신청" [ref=e28] [cursor=pointer]
+    - generic [ref=e33] [cursor=pointer]:
+        - button "Open Next.js Dev Tools" [ref=e34]:
+            - img [ref=e35]
+        - generic [ref=e38]:
+            - button "Open issues overlay" [ref=e39]:
+                - generic [ref=e40]:
+                    - generic [ref=e41]: "0"
+                    - generic [ref=e42]: "1"
+                - generic [ref=e43]: Issue
+            - button "Collapse issues badge" [ref=e44]:
+                - img [ref=e45]
+    - alert [ref=e47]

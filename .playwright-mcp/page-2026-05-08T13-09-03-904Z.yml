@@ -1,0 +1,55 @@
+- generic [active] [ref=e1]:
+    - main [ref=e2]:
+        - generic [ref=e3]:
+            - navigation [ref=e4]:
+                - generic [ref=e5]:
+                    - generic [ref=e6]:
+                        - link "Next.js Supabase Starter" [ref=e7] [cursor=pointer]:
+                            - /url: /
+                        - link "Deploy to Vercel" [ref=e9] [cursor=pointer]:
+                            - /url: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&project-name=nextjs-with-supabase&repository-name=nextjs-with-supabase&demo-title=nextjs-with-supabase&demo-description=This+starter+configures+Supabase+Auth+to+use+cookies%2C+making+the+user%27s+session+available+throughout+the+entire+Next.js+app+-+Client+Components%2C+Server+Components%2C+Route+Handlers%2C+Server+Actions+and+Middleware.&demo-url=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2F&external-id=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&demo-image=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2Fopengraph-image.png
+                            - button "Deploy to Vercel" [ref=e10]:
+                                - img
+                                - generic [ref=e11]: Deploy to Vercel
+                    - generic [ref=e12]:
+                        - link "Sign in" [ref=e13] [cursor=pointer]:
+                            - /url: /auth/login
+                        - link "Sign up" [ref=e14] [cursor=pointer]:
+                            - /url: /auth/sign-up
+            - generic [ref=e15]:
+                - generic [ref=e16]:
+                    - generic [ref=e17]:
+                        - link "Supabase logo" [ref=e18] [cursor=pointer]:
+                            - /url: https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs
+                            - img "Supabase logo" [ref=e19]
+                        - link "Next.js logotype" [ref=e34] [cursor=pointer]:
+                            - /url: https://nextjs.org/
+                            - img "Next.js logotype" [ref=e35]
+                    - heading "Supabase and Next.js Starter Template" [level=1] [ref=e44]
+                    - paragraph [ref=e45]:
+                        - text: The fastest way to build apps with
+                        - link "Supabase" [ref=e46] [cursor=pointer]:
+                            - /url: https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs
+                        - text: and
+                        - link "Next.js" [ref=e47] [cursor=pointer]:
+                            - /url: https://nextjs.org/
+                - main [ref=e49]:
+                    - heading "Next steps" [level=2] [ref=e50]
+                    - list [ref=e51]:
+                        - listitem [ref=e52]:
+                            - checkbox "Sign up your first user Head over to the Sign up page and sign up your first user. It's okay if this is just you for now. Your awesome idea will have plenty of users later!" [ref=e53] [cursor=pointer]
+                            - generic [ref=e54]:
+                                - text: Sign up your first user
+                                - paragraph [ref=e56]:
+                                    - text: Head over to the
+                                    - link "Sign up" [ref=e57] [cursor=pointer]:
+                                        - /url: auth/sign-up
+                                    - text: page and sign up your first user. It's okay if this is just you for now. Your awesome idea will have plenty of users later!
+            - generic [ref=e58]:
+                - paragraph [ref=e59]:
+                    - text: Powered by
+                    - link "Supabase" [ref=e60] [cursor=pointer]:
+                        - /url: https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs
+                - button [ref=e61] [cursor=pointer]:
+                    - img
+    - alert [ref=e62]

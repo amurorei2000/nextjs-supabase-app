@@ -67,14 +67,14 @@
 
 #### 마일스톤
 
-- [ ] 🟢 ⚡ `supabase/migrations/` 에 마이그레이션 파일 작성 — events, participants, carpool_drivers, carpool_passengers, expenses 테이블 [PRD §6]
-- [ ] 🟡 ⚡ RLS 정책 작성 — 주최자만 이벤트 수정, 누구나 participants/carpool 신청 가능 [PRD §6]
-- [ ] 🟢 `mcp__supabase__apply_migration` 또는 Supabase CLI로 원격 DB에 마이그레이션 적용
-- [ ] 🧪 테스트: Playwright MCP로 Supabase 콘솔 접속 후 5개 테이블 생성 확인 및 RLS 정책 목록 검증
-- [ ] 🟢 `mcp__supabase__generate_typescript_types` 로 `lib/types/database.ts` 생성
-- [ ] 🟡 `lib/types/event.ts`, `lib/types/participant.ts` 도메인 타입 인터페이스 정의
-- [ ] 🟢 `lib/supabase/events.ts` — `getEventByToken()`, `getEventById()` 기본 쿼리 함수 작성
-- [ ] 🧪 테스트: Playwright MCP로 Supabase 쿼리 결과 확인 (이벤트 CRUD 기본 동작)
+- [x] 🟢 ⚡ `supabase/migrations/` 에 마이그레이션 파일 작성 — events, participants, carpool_drivers, carpool_passengers, expenses 테이블 [PRD §6]
+- [x] 🟡 ⚡ RLS 정책 작성 — 주최자만 이벤트 수정, 누구나 participants/carpool 신청 가능 [PRD §6]
+- [x] 🟢 `mcp__supabase__apply_migration` 또는 Supabase CLI로 원격 DB에 마이그레이션 적용
+- [x] 🧪 테스트: Playwright MCP로 Supabase 콘솔 접속 후 5개 테이블 생성 확인 및 RLS 정책 목록 검증
+- [x] 🟢 `mcp__supabase__generate_typescript_types` 로 `lib/types/database.ts` 생성
+- [x] 🟡 `lib/types/event.ts`, `lib/types/participant.ts` 도메인 타입 인터페이스 정의
+- [x] 🟢 `lib/supabase/events.ts` — `getEventByToken()`, `getEventById()` 기본 쿼리 함수 작성
+- [x] 🧪 테스트: Playwright MCP로 Supabase 쿼리 결과 확인 (이벤트 CRUD 기본 동작)
 - [ ] 🟢 환경 변수 `RESEND_API_KEY` `.env.local` 추가 및 `.env.example` 업데이트
 
 #### 산출물
@@ -101,30 +101,30 @@
 
 **1-A. 주최자 이벤트 생성 (1주차)**
 
-- [ ] 🟡 ⚡ `app/protected/events/page.tsx` — 내 이벤트 대시보드 (Server Component, 이벤트 목록 조회) [PRD §5]
-- [ ] 🟢 `app/protected/events/new/page.tsx` — 이벤트 생성 폼 (제목, 날짜/시간, 장소, 설명, 최대 인원) [PRD §3-1]
-- [ ] 🟡 ⚡ `app/protected/events/[id]/actions.ts` — `createEvent()` Server Action 구현 (public_token 자동 생성 포함) [PRD §3-1]
-- [ ] 🧪 테스트: Playwright MCP로 이벤트 생성 폼 제출 → DB 레코드 생성 확인 → public_token 자동 생성 확인
-- [ ] 🟡 `app/protected/events/[id]/page.tsx` — 이벤트 관리 페이지 기본 뼈대 (공유 링크 복사 버튼 포함)
-- [ ] 🟢 `updateEvent()`, `closeEvent()` Server Action 구현 [PRD §3-1]
-- [ ] 🧪 테스트: Playwright MCP로 이벤트 수정·마감 상태 변경 → DB 반영 확인
+- [x] 🟡 ⚡ `app/protected/events/page.tsx` — 내 이벤트 대시보드 (Server Component, 이벤트 목록 조회) [PRD §5]
+- [x] 🟢 `app/protected/events/new/page.tsx` — 이벤트 생성 폼 (제목, 날짜/시간, 장소, 설명, 최대 인원) [PRD §3-1]
+- [x] 🟡 ⚡ `app/protected/events/[id]/actions.ts` — `createEvent()` Server Action 구현 (public_token 자동 생성 포함) [PRD §3-1]
+- [x] 🧪 테스트: Playwright MCP로 이벤트 생성 폼 제출 → DB 레코드 생성 확인 → public_token 자동 생성 확인
+- [x] 🟡 `app/protected/events/[id]/page.tsx` — 이벤트 관리 페이지 기본 뼈대 (공유 링크 복사 버튼 포함)
+- [x] 🟢 `updateEvent()`, `closeEvent()` Server Action 구현 [PRD §3-1]
+- [x] 🧪 테스트: Playwright MCP로 이벤트 수정·마감 상태 변경 → DB 반영 확인
 
 **1-B. 공개 이벤트 페이지 + 참여 신청 (2주차)**
 
-- [ ] 🟡 ⚡ `app/events/[token]/page.tsx` — 공개 이벤트 페이지 (이벤트 정보, 참여자 수, 참여 신청 폼) [PRD §3-2]
-- [ ] 🟡 ⚡ `app/events/[token]/actions.ts` — `joinEvent()` Server Action 구현 (이름, 전화번호, 메모 저장) [PRD §3-2]
-- [ ] 🧪 테스트: Playwright MCP로 비인증 상태에서 `/events/{token}` 접속 → 이벤트 정보 확인 → 참여 신청 폼 제출 → DB participants 레코드 생성 확인
-- [ ] 🟡 참여 신청 후 참여자 목록 즉시 갱신 (`revalidatePath`) 확인
-- [ ] 🧪 테스트: Playwright MCP로 중복 전화번호 신청 처리 및 최대 인원 초과 시 폼 비활성화 동작 검증
-- [ ] 🟢 이벤트 `status === 'closed'` 시 신청 불가 처리
+- [x] 🟡 ⚡ `app/events/[token]/page.tsx` — 공개 이벤트 페이지 (이벤트 정보, 참여자 수, 참여 신청 폼) [PRD §3-2]
+- [x] 🟡 ⚡ `app/events/[token]/actions.ts` — `joinEvent()` Server Action 구현 (이름, 전화번호, 메모 저장) [PRD §3-2]
+- [x] 🧪 테스트: Playwright MCP로 비인증 상태에서 `/events/{token}` 접속 → 이벤트 정보 확인 → 참여 신청 폼 제출 → DB participants 레코드 생성 확인
+- [x] 🟡 참여 신청 후 참여자 목록 즉시 갱신 (`revalidatePath`) 확인
+- [x] 🧪 테스트: Playwright MCP로 중복 전화번호 신청 처리 및 최대 인원 초과 시 폼 비활성화 동작 검증
+- [x] 🟢 이벤트 `status === 'closed'` 시 신청 불가 처리
 
 **1-C. 주최자 참여자 관리 (3주차)**
 
-- [ ] 🟡 ⚡ `app/protected/events/[id]/page.tsx` — 참여자 목록 테이블 (이름, 연락처, 메모, 신청 시간, 상태 뱃지) [PRD §3-2]
-- [ ] 🟡 ⚡ `updateParticipantStatus()` Server Action 구현 (pending → confirmed / cancelled) [PRD §3-2]
-- [ ] 🧪 테스트: Playwright MCP로 주최자 로그인 후 참여자 상태 변경 → DB 반영 → 화면 즉시 갱신 확인
-- [ ] 🟢 비주최자가 `/protected/events/[id]` 접근 시 리다이렉트 처리
-- [ ] 🧪 테스트: Playwright MCP로 타인 이벤트 URL 직접 접근 시 403/리다이렉트 동작 검증
+- [x] 🟡 ⚡ `app/protected/events/[id]/page.tsx` — 참여자 목록 테이블 (이름, 연락처, 메모, 신청 시간, 상태 뱃지) [PRD §3-2]
+- [x] 🟡 ⚡ `updateParticipantStatus()` Server Action 구현 (pending → confirmed / cancelled) [PRD §3-2]
+- [x] 🧪 테스트: Playwright MCP로 주최자 로그인 후 참여자 상태 변경 → DB 반영 → 화면 즉시 갱신 확인
+- [x] 🟢 비주최자가 `/protected/events/[id]` 접근 시 리다이렉트 처리
+- [x] 🧪 테스트: Playwright MCP로 타인 이벤트 URL 직접 접근 시 403/리다이렉트 동작 검증
 
 #### 산출물
 
